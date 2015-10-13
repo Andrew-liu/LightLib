@@ -1,4 +1,4 @@
-#Echo 网络库
+# Light 网络库
 
 
 ##开发环境
@@ -14,19 +14,19 @@
 
 ##概要说明
 
-1. Echo借鉴了大量muduo的代码，并对其进行简化。
-2. Echo体现了现代C++的两大风格，一是事件回调，  
+1. Light借鉴了大量muduo的代码，并对其进行简化。
+2. Light体现了现代C++的两大风格，一是事件回调，  
 我们使用function/bind实现回调机制，  
 用户只需要向其注册回调函数即可，  
 必要时可以封装成class，  
 二是采用智能指针进行资源管理，  
 例如TcpConnection使用了shared_ptr管理其生命周期，  
 其他类采用了unique_ptr借助其销毁功能
-3. Echo的**不足之处**:
+3. Light的**不足之处**:
     a) 对错误的处理比较粗糙
     b) 没有使用一个比较规范的日志 
-4. Echo与muduo的**主要差距**:
-    a)Echo没有实现复用同一个Poller的功能，  
+4. Light与muduo的**主要差距**:
+    a)Light没有实现复用同一个Poller的功能，  
     这正是muduo中的EventLoop，里面封装了一个通用的Poll、Epoll模型
     b)我们采用的是阻塞IO，  
     不能成为严格意义上的Reactor模式，  
@@ -51,7 +51,7 @@
 ##源码分析：
 
 > 1.NonCopyable、Copyable表示对象是否具有value语义（复制和赋值），  
-> Echo中除了InetAddress之外，其余均禁用掉了value语义，  
+> Light中除了InetAddress之外，其余均禁用掉了value语义，  
 > 这是为了避免潜在的BUG。
 > 2.Exception相比标准库的exception，  
 > 增加了打印栈痕迹的功能
